@@ -35,8 +35,8 @@ Usage of BrowserArtifact.exe:
 - [x] Opera
 - [x] Brave
 - [x] Vivaldi
-- [] Safari
-- [] Internet Explorer
+- [ ] Safari
+- [ ] Internet Explorer
 
 ## Handled Artefacts
 
@@ -62,14 +62,14 @@ Usage of BrowserArtifact.exe:
 - [x] Cache (Miscellaneous):
   - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\cache2\`
   - `C:\Users\XXX\AppData\Local\Mozilla\Firefox\Profiles\XXX\cache2\`
-- [] Session Data:
-  - [] Current Session:
+- [ ] Session Data:
+  - [ ] Current Session:
     - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\sessionstore.json`
-  - [] Last Session:
+  - [ ] Last Session:
     - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\sessionstore-backups\recovery.jsonlz4`
-- [] Thumbnails (Folder):
+- [ ] Thumbnails (Folder):
   - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\thumbnails`
-- [] Bookmarks backup (jsonlz4):
+- [ ] Bookmarks backup (jsonlz4):
   - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\bookmarkbackups`
 
 ### Chrome
@@ -80,7 +80,7 @@ Usage of BrowserArtifact.exe:
 - [x] Cookies (SQLite): 
   - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\Default\Cookies`
   - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\ChromeDefaultData\Cookies`
-- [] Cache (Miscellaneous):
+- [ ] Cache (Miscellaneous):
   - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\Default\Cache`
   - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\ChromeDefaultData\Cache`
 - [x] Bookmarks (JSON):
@@ -98,25 +98,23 @@ Usage of BrowserArtifact.exe:
 - [x] Extensions & Addons:
   - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\Default\Extensions`
   - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\ChromeDefaultData\Extensions`
-- [] Session Data:
-  - [] Current Session:
+- [ ] Session Data:
+  - [ ] Current Session:
     - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\Default\Current Session`
     - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\ChromeDefaultData\Current Session`
     - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\Default\Current Tabs`
     - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\ChromeDefaultData\Current Tabs`
-  - [] Last Session:
+  - [ ] Last Session:
     - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\Default\Last Session`
     - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\ChromeDefaultData\Last Session`
     - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\Default\Last Tabs`
     - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\ChromeDefaultData\Last Tabs`
-- [] Thumbnails (SQLite):
+- [ ] Thumbnails (SQLite):
   - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\Default\Top Sites`
   - `C:\Users\XXX\AppData\Local\Google\Chrome\User Data\ChromeDefaultData\Thumbnails`
-
-
 
 ## Tested on
 
 - [x] Windows
-- [] Debian 
-- [] MacOSs
+- [ ] Debian 
+- [ ] MacOSs
