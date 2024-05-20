@@ -1,4 +1,4 @@
-package chrome
+package chromium
 
 import (
 	"database/sql"
@@ -11,42 +11,73 @@ import (
 )
 
 func log(level string, source string, message string) {
-	Log.Log(level, "chrome", source, message)
+	Log.Log(level, "chromium", source, message)
 }
 
-func getBasePath(profile string, osName string) string {
+func getBasePath(profile string, browser string, osName string) []string {
+	output := []string{}
 	switch osName {
 	case "windows":
-		return fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\", profile)
+		switch browser {
+		case "chrome":
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\", profile))
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Google\\Chrome\\User Data\\ChromeDefaultData\\", profile))
+			return output
+		case "chromium":
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Chromium\\User Data\\Default", profile))
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Chromium\\User Data\\ChromeDefaultData", profile))
+			return output
+		case "brave":
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\Default", profile))
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\ChromeDefaultData", profile))
+			return output
+		case "edge":
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default", profile))
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Microsoft\\Edge\\User Data\\ChromeDefaultData", profile))
+			return output
+		case "opera":
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Roaming\\Opera Software\\Opera Stable\\Default", profile))
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Roaming\\Opera Software\\Opera Stable\\ChromeDefaultData", profile))
+			return output
+		case "vivaldi":
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Vivaldi\\User Data\\Default", profile))
+			output = append(output, fmt.Sprintf("C:\\Users\\%s\\AppData\\Local\\Vivaldi\\User Data\\ChromeDefaultData", profile))
+			return output
+		default:
+			return nil
+		}
+
 	case "darwin":
-		return fmt.Sprintf("/Users/%s/Library/Application Support/Google/Chrome/")
+		output = append(output, fmt.Sprintf("/Users/%s/Library/Application Support/Google/Chrome/", profile))
+		return output
 	case "linux":
-		return fmt.Sprintf("/home/%s/.config/google-chrome/")
+		return []string{fmt.Sprintf("/home/%s/.config/google-chromium/", profile)}
 	default:
-		return ""
+		return output
 	}
 }
 
-func GetChromeArtifacts(profile string, osName string) []BrowserArtifact {
+func GetChromeArtifacts(profile string, browser string, osName string) []BrowserArtifact {
 	artifacts := []BrowserArtifact{}
+	basePaths := getBasePath(profile, browser, osName)
 
-	basePath := getBasePath(profile, osName)
-
-	artifacts = append(artifacts, processHistory(basePath+"History")...)
-	artifacts = append(artifacts, processDownloads(basePath+"History")...)
-	artifacts = append(artifacts, processBookmarks(basePath+"Bookmarks")...)
-	artifacts = append(artifacts, processCookies(basePath+"Network/Cookies")...)
-	artifacts = append(artifacts, processFormHistory(basePath+"Web Data")...)
-	artifacts = append(artifacts, processLoginData(basePath+"Login Data")...)
-	artifacts = append(artifacts, processExtensions(basePath+"Extensions")...)
-	artifacts = append(artifacts, processFavicons(basePath+"Favicons")...)
-	//artifacts = append(artifacts, processSession(basePath+"Session")...)
-	//artifacts = append(artifacts, processThumbnail(basePath+"Thumbnail")...)
-	artifacts = append(artifacts, processCache(basePath+"Cache")...)
+	for _, basePath := range basePaths {
+		artifacts = append(artifacts, processHistory(basePath+"History")...)
+		artifacts = append(artifacts, processDownloads(basePath+"History")...)
+		artifacts = append(artifacts, processBookmarks(basePath+"Bookmarks")...)
+		artifacts = append(artifacts, processCookies(basePath+"Network/Cookies")...)
+		artifacts = append(artifacts, processFormHistory(basePath+"Web Data")...)
+		artifacts = append(artifacts, processLoginData(basePath+"Login Data")...)
+		artifacts = append(artifacts, processExtensions(basePath+"Extensions")...)
+		artifacts = append(artifacts, processFavicons(basePath+"Favicons")...)
+		//artifacts = append(artifacts, processSession(basePath+"Session")...)
+		//artifacts = append(artifacts, processThumbnail(basePath+"Thumbnail")...)
+		artifacts = append(artifacts, processCache(basePath+"Cache")...)
+	}
 
 	for i, artifact := range artifacts {
 		artifact.User = profile
-		artifact.App = "chrome"
+		artifact.App = "chromium"
 		artifacts[i] = artifact
 	}
 

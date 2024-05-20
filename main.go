@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	. "local/BrowserArtifact/src"
-	. "local/BrowserArtifact/src/browsers/chrome"
+	. "local/BrowserArtifact/src/browsers/chromium"
 	. "local/BrowserArtifact/src/browsers/firefox"
 	. "local/BrowserArtifact/src/export"
 	"os"
@@ -34,7 +34,7 @@ var logFile string
 
 func init() {
 	// Define command line arguments
-	flag.StringVar(&browserArg, "browser", "all", "Browser: chrome, firefox")
+	flag.StringVar(&browserArg, "browser", "all", "Browser: chromium, chrome, edge, brave, opera, firefox, all")
 	flag.StringVar(&outputDirectory, "output_directory", ".", "Output Directory")
 	flag.StringVar(&fileBaseName, "file_base_name", "BrowserArtifacts", "File Base Name")
 	flag.StringVar(&outputFormat, "format", "json", "Output Format: json, json_line, csv")
@@ -103,8 +103,8 @@ func findInstalledBrowser() []string {
 	switch OsName {
 	case "windows":
 		//Check if Chrome is installed
-		if _, err := os.Stat("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"); err == nil {
-			foundBrowser = append(foundBrowser, "chrome")
+		if _, err := os.Stat("C:\\Program Files\\Google\\Chrome\\Application\\chromium.exe"); err == nil {
+			foundBrowser = append(foundBrowser, "chromium")
 		}
 		//Check if firefox is installed
 		if _, err := os.Stat("C:\\Program Files\\Mozilla firefox\\firefox.exe"); err == nil {
@@ -114,7 +114,7 @@ func findInstalledBrowser() []string {
 		// Mac
 		//Check if Chrome is installed
 		if _, err := os.Stat("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"); err == nil {
-			foundBrowser = append(foundBrowser, "chrome")
+			foundBrowser = append(foundBrowser, "chromium")
 		}
 		//Check if firefox is installed
 		if _, err := os.Stat("/Applications/firefox.app/Contents/MacOS/firefox"); err == nil {
@@ -123,8 +123,8 @@ func findInstalledBrowser() []string {
 	case "linux":
 		// Linux
 		//Check if Chrome is installed
-		if _, err := os.Stat("/usr/bin/google-chrome"); err == nil {
-			foundBrowser = append(foundBrowser, "chrome")
+		if _, err := os.Stat("/usr/bin/google-chromium"); err == nil {
+			foundBrowser = append(foundBrowser, "chromium")
 		}
 		//Check if firefox is installed
 		if _, err := os.Stat("/usr/bin/firefox"); err == nil {
@@ -285,8 +285,20 @@ func main() {
 		for _, browser := range browsers {
 			switch browser {
 			case "chrome":
-				log("debug", "main", "Processing chrome artifacts for profile: "+profile)
-				artifacts = append(artifacts, GetChromeArtifacts(profile, OsName)...)
+				log("debug", "main", "Processing Chromium artifacts for profile: "+profile)
+				artifacts = append(artifacts, GetChromeArtifacts(profile, browser, OsName)...)
+			case "chromium":
+				log("debug", "main", "Processing Chrome artifacts for profile: "+profile)
+				artifacts = append(artifacts, GetChromeArtifacts(profile, browser, OsName)...)
+			case "edge":
+				log("debug", "main", "Processing Edge artifacts for profile: "+profile)
+				artifacts = append(artifacts, GetChromeArtifacts(profile, browser, OsName)...)
+			case "brave":
+				log("debug", "main", "Processing Brave artifacts for profile: "+profile)
+				artifacts = append(artifacts, GetChromeArtifacts(profile, browser, OsName)...)
+			case "opera":
+				log("debug", "main", "Processing Opera artifacts for profile: "+profile)
+				artifacts = append(artifacts, GetChromeArtifacts(profile, browser, OsName)...)
 			case "firefox":
 				log("debug", "main", "Processing firefox artifacts for profile: "+profile)
 				artifacts = append(artifacts, GetFirefoxArtifacts(profile, OsName)...)

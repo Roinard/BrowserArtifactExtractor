@@ -1,4 +1,4 @@
-package chrome
+package chromium
 
 type bookmark struct {
 	Checksum string `json:"checksum"`

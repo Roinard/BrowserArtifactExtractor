@@ -21,7 +21,7 @@ func CheckPath(path string, isDir bool) bool {
 /**
  * Logger Class that logs messages to a writer
  * Logs Format:
- * time=2021-07-07T15:04:05.999999999Z level=info package="chrome" source="" msg="This is a log message"
+ * time=2021-07-07T15:04:05.999999999Z level=info package="chromium" source="" msg="This is a log message"
  */
 
 var Log = NewLogger()

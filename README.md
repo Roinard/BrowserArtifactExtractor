@@ -7,25 +7,36 @@
 ```
 Usage of BrowserArtifact.exe:
   -browser string
-        Browser: chrome, firefox [default: all] (default "all")
-  -end_date string
-        End Date [default: now] (default "now")
+        Browser: chrome, firefox (default "all")
   -start_date string
-        Start Date [default: 2000-01-01] (default "2000-01-01")
+        Start Date (default "2000-01-01")
+  -end_date string
+        End Date (default "now")
   -file_base_name string
-        File Base Name [default: ''] (default "BrowserArtifacts")
+        File Base Name (default "BrowserArtifacts")
   -format string
-        Output Format: json, json_line, csv [default: json] (default "json")
+        Output Format: json, json_line, csv (default "json")
   -log_file string
-        Log File [default: '']
+        Log File
   -output_directory string
-        Output Directory [default: .] (default ".")
+        Output Directory (default ".")
   -profile string
-        Profile [default: all] (default "all")
+        User Profile (default "all")
   -verbose string
-        Verbose Level: debug, info, warn, error [default: info] (default "info")
+        Verbose Level: debug, info, warn, error (default "info")
 ```
 
+## Supported Browsers
+
+- [x] Firefox
+- [x] Chrome
+- [x] Chromium
+- [x] Edge
+- [x] Opera
+- [x] Brave
+- [x] Vivaldi
+- [] Safari
+- [] Internet Explorer
 
 ## Handled Artefacts
 
@@ -34,24 +45,23 @@ Usage of BrowserArtifact.exe:
 - [x] History (SQLite): 
   - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\places.sqlite`
 - [x] Downloads (SQLite):
-  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\downloads.sqlite`
+  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\places.sqlite`
+- [x] Bookmarks (SQLite):
+  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\places.sqlite`
 - [x] Cookies (SQLite): 
   - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\cookies.sqlite`
-- [x] Cache (Miscellaneous):
-  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\cache2\entries`
-  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\cache2\startupCache`
 - [x] Form History (SQLite):
   - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\formhistory.sqlite`
-- [x] Addons & Extensions (SQLite):
-  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\extensions.sqlite`
-  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\addons.sqlite`
 - [x] Favicons (SQLite):
   - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\favicons.sqlite`
+- [x] Addons & Extensions (JSON):
+  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\extensions.json`
+  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\addons.json`
 - [x] Logins (JSON):
   - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\logins.json`
-- [] Passords (KDBX?):
-  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\key4.db`
-  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\key3.db`
+- [x] Cache (Miscellaneous):
+  - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\cache2\`
+  - `C:\Users\XXX\AppData\Local\Mozilla\Firefox\Profiles\XXX\cache2\`
 - [] Session Data:
   - [] Current Session:
     - `C:\Users\XXX\AppData\Roaming\Mozilla\Firefox\Profiles\XXX\sessionstore.json`
